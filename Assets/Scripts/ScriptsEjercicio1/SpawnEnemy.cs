@@ -13,10 +13,25 @@ public class SpawnEnemy : MonoBehaviour
     public NavMeshAgent agent;
 
 
+    void Start()
+    {
+        
+        if (Player == null)
+        {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                Player = playerObject.transform;
+            }
+        }
+    }
+
+
     void Update()
     {
         SpawnE();
         RandomStats();
+        GetComponent<Transform>();
 
 
     }
@@ -54,4 +69,5 @@ public class SpawnEnemy : MonoBehaviour
         agent.stoppingDistance = (Random.Range(1.5f, 2f));
 
     }
+    
 }

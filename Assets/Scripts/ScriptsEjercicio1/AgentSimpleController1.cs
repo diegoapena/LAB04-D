@@ -5,33 +5,39 @@ public class AgentSimpleController : MonoBehaviour
     public Transform Target;
     private NavMeshAgent agent;
 
-    Transform player;
-
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        GetComponent<CapsuleCollider>();
 
+        // Asignar automáticamente el Target al Transform del jugador
+        if (Target == null)
+        {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                Target = playerObject.transform;
+            }
+            else
+            {
+                Debug.LogError("No se encontró un objeto con la etiqueta 'Player'. Asegúrate de que el jugador tenga la etiqueta correcta.");
+            }
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (agent != null)
+        if (agent != null && Target != null)
         {
             agent.SetDestination(Target.position);
         }
     }
 
-   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        if (player != null)
+        if (Target != null)
         {
-            Gizmos.color = Color.red;
-
-            Vector3 dir = player.position - transform.position;
+            Vector3 dir = Target.position - transform.position;
             Gizmos.DrawRay(transform.position, dir);
         }
     }
