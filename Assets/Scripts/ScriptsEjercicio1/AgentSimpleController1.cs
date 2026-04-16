@@ -4,7 +4,7 @@ public class AgentSimpleController : MonoBehaviour
 {
     public Transform Target;
     private NavMeshAgent agent;
-    
+
     Transform player;
 
     void Start()
@@ -23,14 +23,7 @@ public class AgentSimpleController : MonoBehaviour
         }
     }
 
-    // Detecta la colisión con el Target
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform == Target)
-        {
-            Destroy(gameObject); // Destruye el agente
-        }
-    }
+   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

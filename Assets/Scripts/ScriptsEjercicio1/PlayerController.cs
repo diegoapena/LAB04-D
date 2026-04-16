@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float dashTimer = 0f;
     private bool isSprinting = false;
     private float baseMoveSpeed;
-    
+
 
 
     private void Awake()
